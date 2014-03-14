@@ -6,10 +6,10 @@ Based on rAPIdo language we provide a specification for each OpenStack component
 ## Introduction
 
 Current clients in `Python` for instance provides seamless access to OpenStack components using
-REST services. But in parallel such client are not based on a common core. Therefor such approach
-implies complexity in the code because the way the client works (pattern) is different and exceptions
-are not homogeneous. In addition such clients exist also for different languages like `Java` etc.
-implying also maintenance difficulties.
+REST services. But in parallel such clients are not based on a common core. Therefor such approach
+implies complexity in the code because the way the clients work (pattern) are different and exceptions
+are not homogeneous. In addition such clients exist for different languages like `Java` etc. implying 
+also maintenance difficulties. 
 
 ## Specification and Generation
 
