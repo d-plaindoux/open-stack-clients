@@ -11,8 +11,6 @@ implies complexity in the code because the way the clients work (pattern) are di
 are not homogeneous. In addition such clients exist for different languages like `Java` etc. implying 
 also maintenance difficulties. 
 
-## Specification and Generation
-
 This project proposes a complete specification of OpenStack clients using the [rAPIdo](https://github.com/d-plaindoux/rapido) DSL. Then once such specification is ready a transpiler
 stage can be performed generating clients for all supported languages providing at the same time
 a complete api for `Python`, `Scala` etc.
