@@ -1,0 +1,107 @@
+/*
+ * Copyright (C)2014 D. Plaindoux.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation; either version 2, or (at your option) any
+ * later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; see the file COPYING.  If not, write to
+ * the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+//======================================================================
+// Identity V3
+//======================================================================
+
+type Details = {
+   "version":{
+      "status":string
+      "updated":string
+      "media-types":[
+         {
+            "base":string
+            "type":string
+         }
+      ]
+      "id":string
+      "links":[
+         {
+            "href":string
+            "rel":string
+         }
+      ]
+   }
+}
+
+type Authenticated = {
+   "token":{
+      "catalog":string
+      "expires_at":string
+      "issued_at":string
+      "methods":[
+         string
+      ]
+      "project":{
+         "domain":{
+            "id":string
+            "links":{
+               "self":string
+            }
+            "name":string
+         }
+         "id":string
+         "links":{
+            "self":string
+         }
+         "name":string
+      }
+      "roles":[
+         {
+            "id":string
+            "links":{
+               "self":string
+            }
+            "name":string
+         }
+      ]
+      "user": User
+   }
+}
+
+type User = {
+    "domain":{
+	"id":string
+	"links":{
+	    "self":string
+	}
+	"name":string
+    }
+    "id":string
+    "links":{
+	"self":string
+    }
+    "name":string
+}
+
+type AuthToken = {
+     @set(auth) "X-Auth-Token": string
+     @set(subject) "X-Subject-Token": string
+}
+
+service identity [v3] {
+  details  :           => Details       = GET
+  validates: AuthToken => Authenticated = GET[auth/tokens] HEADER[AuthToken]
+}
+
+//
+// OpenStack client
+//
+
+client openStack provides identity
